@@ -1,0 +1,86 @@
+﻿@model MvcStok.Models.Entity.TBLURUNLER
+@{
+    ViewBag.Title = "UrunGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<script>
+    // Sayfa yüklendiğinde modalı aç
+    window.onload = function () {
+        var modal = document.getElementById("Modal1");
+        modal.style.display = "block";
+    };
+
+    // Modal kapatma işlemi için kapatma düğmesini tanımla
+    var closeBtn = document.getElementsByClassName("close")[0];
+    closeBtn.onclick = function () {
+        var modal = document.getElementById("Modal1");
+        modal.style.display = "none";
+    };
+</script>
+
+
+@using (Html.BeginForm("Guncelle", "Urun", FormMethod.Post))
+{
+    <div class="modal" id="Modal1">
+        <div class="modal-dialog" style="max-width: 80% !important;" role="document">
+            <div class="modal-content">
+                <h4 class="modal-title">Ürün Güncelleme Ekranı</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/Urun">
+
+                    @Html.LabelFor(m => m.URUNID)
+                    @Html.TextBoxFor(m => m.URUNID, new { @class = "form-control" })
+
+                    <br />
+                    <br />
+
+                    @Html.LabelFor(m => m.URUNAD)
+                    @Html.TextBoxFor(m => m.URUNAD, new { @class = "form-control" })
+                    <br />
+                    <br />
+
+                    @Html.LabelFor(m => m.MARKA)
+                    @Html.TextBoxFor(m => m.MARKA, new { @class = "form-control" })
+
+                    <br />
+                    <br />
+
+
+                    @Html.LabelFor(m => m.URUNKATEGORI)
+                    @Html.DropDownListFor(m => m.TBLKATEGORILER.KATEGORIID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.URUNKATEGORI, new { @class = "form-control" })
+
+                    <br />
+                    <br />
+
+                    @Html.LabelFor(m => m.FIYAT)
+                    @Html.TextBoxFor(m => m.FIYAT, new { @class = "form-control" })
+                    <br />
+                    <br />
+
+                    @Html.LabelFor(m => m.STOK)
+                    @Html.TextBoxFor(m => m.STOK, new { @class = "form-control" })
+
+                    <button class="btn btn-info">Ürün Güncelleme İşlemini Yap</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+                </form>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+
+
+    </div>
+}
+
+
